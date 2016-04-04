@@ -9,8 +9,8 @@ of jobs. The following are characteristics of Makeflow.
 
      **`Master/Workers paradigm`**  A master process monitors and controls the workers for completing the tasks and transfering the data.  
      **`Parallel job execution`** Jobs are executed in parallel as much as possible.
-     **Fault tollerent** In case of failure, the execution of jobs are  continued from where it stopped. 
-     **UNIX tool Make**  The syntax of Makeflow is similar to UNIX tool `Make` that allows one to easily describe the job dependencies.  
+     **<b> Fault tollerent <\b> ** In case of failure, the execution of jobs are  continued from where it stopped. 
+     ####UNIX tool Make####  The syntax of Makeflow is similar to UNIX tool `Make` that allows one to easily describe the job dependencies.  
 
 <img src="https://raw.githubusercontent.com/OSGConnect/tutorial-makeflow-quickstart/master/Figs/MWFig.png" width="400px" height="350px" />
 
