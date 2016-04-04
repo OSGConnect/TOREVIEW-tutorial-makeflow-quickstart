@@ -7,8 +7,8 @@
 [Makeflow](http://ccl.cse.nd.edu/software/makeflow/) is a workflow engine that handles large number 
 of jobs. The following are characteristics of Makeflow.
 
-* `Master/Workers paradigm`  Master monitors and controls the workers. Workers complete the tasks and transfer the 
-data back to the master. 
+* `Master/Workers paradigm`  Workers complete the tasks and transfer the data back to the master. Master 
+monitors and controls the workers.
 * `Parallel job execution` Jobs are executed in parallel as much as possible.
 * `Fault tollerent` In case of failure, the execution of jobs are  continued from where it stopped. 
 * `UNIX tool Make`  The syntax of Makeflow is similar to UNIX tool _Make_ that allows one to easily describe the job dependencies.  
@@ -17,9 +17,8 @@ data back to the master.
 
 In this tutorial, we learn (1) how to use makeflow and (2) how to detach the master process 
 from the terminal so that 
-the master is alive and waits for the workers to complete, even after we log out from the submit node.  
-
-We consider a simple example of generating Fibonacci sequence to deomonstate the usage of Makeflow. 
+the master is alive and waits for the workers to complete, even after we log out from the submit node. We 
+consider a simple example of generating Fibonacci sequence to deomonstate the usage of Makeflow. 
 
 ## tutorial files
 
