@@ -11,7 +11,7 @@ of jobs. The following are characteristics of Makeflow.
 data back to the master. 
 * `Parallel job execution` Jobs are executed in parallel as much as possible.
 * `Fault tollerent` In case of failure, the execution of jobs are  continued from where it stopped. 
-* `UNIX tool _Make_`  The syntax of Makeflow is similar to UNIX tool "_Make_" that allows one to easily describe the job dependencies.  
+* `UNIX tool Make`  The syntax of Makeflow is similar to UNIX tool _Make_ that allows one to easily describe the job dependencies.  
 
 <img src="https://raw.githubusercontent.com/OSGConnect/tutorial-makeflow-quickstart/master/Figs/MWFig.png" width="400px" height="350px" />
 
