@@ -48,7 +48,7 @@ sequence. For example,
 The makeflow file `fibonacci.makeflow` describes a workflow of executing two independent jobs (Rules 1&2) followed by a
 dependent job (Rule 3). See Fig. 2 for the graphical representation of the workflow. The syntax of the makeflow file is based on the Make rules.   
 
-<img src="https://raw.githubusercontent.com/OSGConnect/tutorial-makeflow-quickstart/master/Figs/FibFig.png" width="300px" height="300px" />
+<img src="https://raw.githubusercontent.com/OSGConnect/tutorial-makeflow-quickstart/master/Figs/FibFig.png" width="350px" height="300px" />
 
 Let us take a look at the makeflow script, 
 
