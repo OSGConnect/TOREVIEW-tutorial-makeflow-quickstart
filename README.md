@@ -89,59 +89,11 @@ To run fibonacci.makeflow on OSG Connect, type
 The argument `-T condor` submits jobs to the condor batch system. The 
 last line `nothing left to do` means the workflow is completed. 
 
-## How to run the master as a detached process?
-
-In the above description of makeflow execution, the master process runs interactively in the terminal. And the master process keeps track of the workers that are distributed on OSG machines. It is okay to run makeflow from the terminal for short jobs.The workflow of generating Fibonacci sequence takes a few minutes to complete. What if you want to run several jobs that may run for several days and weeks. If you log out from the submit node, the master process 
-will be killed.  
-
-It is a good idea to run makeflow in the detached mode. There are several ways to detach the master process from the 
-terminal, such as nohup, SCREEN, tmux, and condor local job. 
-
-We recommend to run the master process as a local condor job on the submit node.
-
-## Run master process as a local condor job. 
-
-Let us take a look at the file `local_condor_makeflow.submit`
-
-      $ cat local_condor_makeflow.submit 
-      universe = local                        
-      executable = /usr/bin/makeflow
-      arguments = -T condor fibonacci.makeflow
-      queue 
-
-This is the HTcondor job description file written in just four lines. The first line says that the job universe is local and the job would
-run on the submit node. The executable for the job is `/usr/bin/makeflow` with an argument `-T condor fibonacci.makeflow`. The keyword `queue` is the start button 
-that submits the above three lines to the HTCondor batch system. 
-
-Submit the local condor job, 
-
-    $ condor_submit local_condor_makeflow.submit 
-    Submitting job(s).
-    1 job(s) submitted to cluster 367027.
-
-Check the job status
-
-    $ condor_q username -w
-
-    -- Submitter: login01.osgconnect.net : <192.170.227.195:21720> : login01.osgconnect.net
-     ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD               
-    19150583.0   dbala           4/1  11:54   0+00:01:54 R  0   0.4  makeflow -T condor fibonacci.makeflow
-    19150584.0   dbala           4/1  11:54   0+00:00:40 I  0   0.0  condor.sh fibonacci.bash 20 > fib.20.out
-    19150585.0   dbala           4/1  11:54   0+00:00:20 I  0   0.0  condor.sh fibonacci.bash 10 > fib.10.out
-
-The above output shows that the master is running and the two workers are waiting in the queue. The makeflow execution is a 
-local condor job so it starts quickly. The two workers that run Rules 1 and 2 are distributed on OSG machines and they are waiting for resources. The jobs would complete in few minutes. 
-
-## Summary
-
-      Makeflow rules are based on the unix tool Make. 
-      Run the master as a detached process with nohup, screen, tmux or condor local job. 
-      We recommend running the master as a local condor job on the submit node. 
-
-  
 ## What next?
 
-This tutorial explains the basics of running makeflow on OSG with a toy example of generating fibonacci sequence. Check 
+This tutorial explains the basics of running makeflow on OSG with a toy example of generating fibonacci sequence. Go 
+through the tutorial on "makeflow-detachmaster" and  learn how to detached master from the termianl. This is useful to 
+run long running jobs on OSG. Also check 
 the examples on makeflow-R and makeflow-GROMACS that show how to run real applications on OSG with makeflow. 
 
 ## Getting Help

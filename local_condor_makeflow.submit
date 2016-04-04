@@ -1,5 +1,0 @@
-universe = local
-executable = /usr/bin/makeflow
-arguments = -T condor fibonaci.makeflow
-queue
-
