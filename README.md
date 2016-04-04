@@ -8,11 +8,11 @@
 of jobs. The following are characteristics of Makeflow.
 
      **Master/Workers paradigm**  A master process monitors and controls the workers for completing the tasks and transfering the data.  
-     **Parallel job execution**. Jobs are executed in parallel as much as possible.
-     **Fault tollerent**. In case of failure, the execution of jobs are  continued from where it stopped. 
+     **Parallel job execution** Jobs are executed in parallel as much as possible.
+     **Fault tollerent** In case of failure, the execution of jobs are  continued from where it stopped. 
      **UNIX tool Make**  The syntax of Makeflow is similar to UNIX tool `Make` that allows one to easily describe the job dependencies.  
 
-![fig 1](https://raw.githubusercontent.com/OSGConnect/tutorial-makeflow-quickstart/master/Figs/MWFig.png)
+![fig 1](https://raw.githubusercontent.com/OSGConnect/tutorial-makeflow-quickstart/master/Figs/MWFig.png = 250px)
 
 In this tutorial, we learn (1) how to use makeflow and (2) how to detach the master process from the terminal so that 
 the master is alive and waits for the workers to complete, even after we log out from the submit node.  We consider a 
