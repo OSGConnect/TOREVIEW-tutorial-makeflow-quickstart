@@ -39,11 +39,8 @@ The script `fibonacci.bash` takes an integer as an input argument and generates 
 sequence. For example, 
 
      $ ./fibonacci.bash 6
-     1
-     2
-     3
-     5
-     8
+
+would print the Fibonacci sequence 1, 2, 3, 5, and 8. 
 
 ## Makeflow script
 
