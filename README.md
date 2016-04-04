@@ -12,7 +12,7 @@ of jobs. The following are characteristics of Makeflow.
      **Fault tollerent** In case of failure, the execution of jobs are  continued from where it stopped. 
      **UNIX tool Make**  The syntax of Makeflow is similar to UNIX tool `Make` that allows one to easily describe the job dependencies.  
 
-<img src="https://raw.githubusercontent.com/OSGConnect/tutorial-makeflow-quickstart/master/Figs/MWFig.png" width="400px" height="400px" />
+<img src="https://raw.githubusercontent.com/OSGConnect/tutorial-makeflow-quickstart/master/Figs/MWFig.png" width="300px" height="300px" />
 
 In this tutorial, we learn (1) how to use makeflow and (2) how to detach the master process from the terminal so that 
 the master is alive and waits for the workers to complete, even after we log out from the submit node.  We consider a 
@@ -48,7 +48,7 @@ sequence. For example,
 The makeflow file `fibonacci.makeflow` describes a workflow of executing two independent jobs (Rules 1&2) followed by a
 dependent job (Rule 3). See Fig. 2 for the graphical representation of the workflow. The syntax of the makeflow file is based on the Make rules.   
 
-![fig 2](https://raw.githubusercontent.com/OSGConnect/tutorial-makeflow-quickstart/master/Figs/FibFig.png)
+<img src="https://raw.githubusercontent.com/OSGConnect/tutorial-makeflow-quickstart/master/Figs/FibFig.png" width="300px" height="300px" />
 
 Let us take a look at the makeflow script, 
 
