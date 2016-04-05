@@ -1,5 +1,5 @@
 
-[title]: - "makeflow - Quickstart"
+[title]: - "Makeflow - Quickstart"
 [TOC]
  
 ## Overview
