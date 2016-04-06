@@ -1,13 +1,14 @@
 
-# Rule 1
+
+# Rule 1  Outputfile = fib.10.out, Inputfile = fibonacci.bash
 fib.10.out: fibonacci.bash
-    fibonaci.bash 10 > fib.10.out
+    fibonacci.bash 10 > fib.10.out
 
-# Rule 2
+# Rule 2  Outputfile = fib.20.out, Inputfile = fibonacci.bash
 fib.20.out: fibonacci.bash
-    fibonaci.bash 20 > fib.20.out
+    fibonacci.bash 20 > fib.20.out
 
-# Rule 3 Rule 3 Local and depends on the output from Rule 1 and Rule 2 
+# Rule 3  Local and depends on the output from Rules 1 and 2 
 fib.out: fib.10.out fib.20.out
     LOCAL paste fib.10.out fib.20.out > fib.out
 
