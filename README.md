@@ -13,7 +13,7 @@ monitors and controls the workers.
 * `Fault tolerant` In case of failure, the execution of jobs are  continued from where it stopped. 
 * `UNIX tool Make`  The syntax of Makeflow is similar to UNIX tool Make that allows one to easily describe the job dependencies.  
 
-<img src="https://raw.githubusercontent.com/OSGConnect/tutorial-makeflow-quickstart/master/Figs/MWFig.png" width="400px" height="350px" />
+<img src="https://raw.githubusercontent.com/OSGConnect/tutorial-makeflow-quickstart/master/Figs/MWFig.png" width="450px" height="350px" />
 
 In this tutorial, we learn (1) how to use Makeflow and (2) how to detach the master process 
 from the terminal so that 
@@ -45,7 +45,7 @@ would print the Fibonacci sequence 1, 2, 3, 5, and 8.
 The Makeflow file `fibonacci.makeflow` describes a workflow of executing two independent jobs (Rules 1&2) followed by a
 dependent job (Rule 3). See Fig. 2 for the graphical representation of the workflow. The syntax of the Makeflow file is based on the Make rules.   
 
-<img src="https://raw.githubusercontent.com/OSGConnect/tutorial-makeflow-quickstart/master/Figs/FibFig.png" width="350px" height="300px" />
+<img src="https://raw.githubusercontent.com/OSGConnect/tutorial-makeflow-quickstart/master/Figs/FibFig.png" width="450px" height="300px" />
 
 Let us take a look at the Makeflow script, 
 
