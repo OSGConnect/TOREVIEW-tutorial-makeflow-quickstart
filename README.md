@@ -29,7 +29,7 @@ It is convenient to start with the `tutorial` command. In the command prompt, ty
 This will create a directory `tutorial-makeflow-quickstart`. Inside the directory, you will see the following files
 
      fibonacci.bash                 # A simple bash script that generates the Fibonacci sequence
-     fibonacci.makeflow             # The makeflow file 
+     fibonacci.makeflow             # The Makeflow file 
 
 The file `fibonacci.bash` is the job script and the file `fibonacci.makeflow` describes the make rules. 
 
@@ -51,17 +51,18 @@ Let us take a look at the Makeflow script,
 
      $ cat fibonacci.makeflow
 
-     # Rule 1 
+
+     # Rule 1  Outputfile = fib.10.out, Inputfile = fibonacci.bash
      fib.10.out: fibonacci.bash
-         fibonacci.bash 10 > fib.10.out
+        fibonacci.bash 10 > fib.10.out
 
-     # Rule 2
+     # Rule 2  Outputfile = fib.20.out, Inputfile = fibonacci.bash
      fib.20.out: fibonacci.bash
-         fibonacci.bash 20 > fib.20.out
+        fibonacci.bash 20 > fib.20.out
 
-     # Rule 3 Local and depends on the output from Rule 1 and Rule 2
+     # Rule 3  Local and depends on the output from Rules 1 and 2 
      fib.out: fib.10.out fib.20.out
-         LOCAL paste fib.10.out fib.20.out > fib.out
+        LOCAL paste fib.10.out fib.20.out > fib.out
 
 
 In the above description, there are three Make rules.  Rules 1 and 2  execute `fibonnaci.bash` with input arguments 10 and 20, respectively. These two rules produce the output files fib.10.out and fib.20.out.  
