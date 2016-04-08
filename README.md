@@ -20,7 +20,7 @@ from the terminal so that
 the master is alive and waits for the workers to complete, even after we log out from the submit node. We 
 consider a simple example of generating Fibonacci sequence to demonstrate the usage of Makeflow. 
 
-## tutorial files
+## Tutorial files
 
 It is convenient to start with the `tutorial` command. In the command prompt, type
 
