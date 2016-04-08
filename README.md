@@ -96,4 +96,5 @@ run long running jobs on OSG. Also check
 the examples on makeflow-R and makeflow-GROMACS that show how to run real applications on OSG with Makeflow.
 
 ## Getting Help
-For assistance or questions, please email the OSG User Support team  at [user-support@opensciencegrid.org](mailto:user-support@opensciencegrid.org) or visit the [help desk and community forums](http://support.opensciencegrid.org).
+Contact [Cooperative Computing Lab (cclab)](http://ccl.cse.nd.edu/software/help/) for technical questions about Makeflow.
+For general assistance or questions related to running the jobs on OSG, please email the OSG User Support team  at [user-support@opensciencegrid.org](mailto:user-support@opensciencegrid.org) or visit the [help desk and community forums](http://support.opensciencegrid.org). 
