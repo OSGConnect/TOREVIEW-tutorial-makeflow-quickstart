@@ -28,8 +28,9 @@ It is convenient to start with the `tutorial` command. In the command prompt, ty
  
 This will create a directory `tutorial-makeflow-quickstart`. Inside the directory, you will see the following files
 
-     fibonacci.bash                 # A simple bash script that generates the Fibonacci sequence
-     fibonacci.makeflow             # The Makeflow file 
+     fibonacci.bash                        # A simple bash script that generates the Fibonacci sequence
+     fibonacci.makeflow                    # The Makeflow file 
+     submit_makeflow_to_local_condor.sh    # The shell script to execute the makeflow file as a local condor job
 
 The file `fibonacci.bash` is the job script and the file `fibonacci.makeflow` describes the make rules. 
 
@@ -73,7 +74,7 @@ from Rules 1 and 2. Therefore, Rule 3 is the child while Rules 1 and 2 are paren
 Rule 3 is local. This means Rule 1 and 2 would run on remote machines while Rule 3 is executed on local machine. 
 
 
-## Makeflow execution 
+## Executing Makeflow script
 
 To run fibonacci.makeflow on OSG Connect, type 
 
@@ -87,6 +88,16 @@ To run fibonacci.makeflow on OSG Connect, type
 
 The argument `-T condor` submits jobs to the condor batch system. The 
 last line `nothing left to do` means the workflow is completed. 
+
+## Detach Master process
+
+The above execution of makeflow script runs as an interactive process on login node. It is a good idea to run Makeflow in the detached mode. There are several ways to detach the master process from the terminal, such as `SCREEN`, `tmux`, and `condor job as `local universe`. 
+
+Here we detach the master process from the terminal with condor local job via a simple script `submit_makeflow_to_local_condor.sh`. 
+
+     $ submit_makeflow_to_local_condor.sh fibonacci.makeflow
+
+The above shell command executes the makeflow file `fibonacci.makeflow` as a local condor job. 
 
 ## What next?
 
