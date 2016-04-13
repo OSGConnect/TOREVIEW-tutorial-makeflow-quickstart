@@ -97,7 +97,9 @@ Here we detach the master process from the terminal with condor local job via a 
 
      $ submit_makeflow_to_local_condor.sh fibonacci.makeflow
 
-The above shell command executes the makeflow file `fibonacci.makeflow` as a local condor job. 
+This shell command executes the makeflow file `fibonacci.makeflow` as a local condor job. [A separate tutorial 
+contains the details of local condor job to detach the master.](https://support.opensciencegrid.org/support/solutions/articles/12000007102-makeflow-detach-master-from-the-terminal)
+
 
 ## What next?
 
