@@ -28,9 +28,9 @@ It is convenient to start with the `tutorial` command. In the command prompt, ty
  
 This will create a directory `tutorial-makeflow-quickstart`. Inside the directory, you will see the following files
 
-     fibonacci.bash                        # A simple bash script that generates the Fibonacci sequence
-     fibonacci.makeflow                    # The Makeflow file 
-     submit_makeflow_to_local_condor.sh    # The shell script to execute the makeflow file as a local condor job
+     fibonacci.bash                       # A simple bash script that generates the Fibonacci sequence
+     fibonacci.makeflow                   # Makeflow file 
+     submit_makeflow_to_local_condor.sh   # Script to execute the makeflow file as a local condor job
 
 `fibonacci.makeflow` is the makeflow file that contains the make rules.  `fibonacci.bash` is the job 
 script which generates the Fibonacci sequence for a given integer . For example, 
