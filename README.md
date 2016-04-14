@@ -11,7 +11,7 @@ of jobs. The following are characteristics of Makeflow.
 monitors and controls the workers.
 *    `Parallel job execution` Jobs are executed in parallel as much as possible.
 *    `Fault tolerant` In case of failure, the execution of jobs are  continued from where it stopped. 
-*    `UNIX tool Make`  The syntax of Makeflow is similar to UNIX tool Make that allows one to easily describe the job dependencies.  
+*    `UNIX tool Make` The syntax of Makeflow is similar to UNIX tool Make that allows one to easily describe the job dependencies.  
 
 <img src="https://raw.githubusercontent.com/OSGConnect/tutorial-makeflow-quickstart/master/Figs/MWFig.png" width="450px" height="350px" />
 
@@ -32,10 +32,8 @@ This will create a directory `tutorial-makeflow-quickstart`. Inside the director
      fibonacci.makeflow                    # The Makeflow file 
      submit_makeflow_to_local_condor.sh    # The shell script to execute the makeflow file as a local condor job
 
-The file `fibonacci.bash` is the job script and the file `fibonacci.makeflow` describes the make rules. 
-
-The script `fibonacci.bash` takes an integer as an input argument and generates the Fibonacci 
-sequence. For example, 
+`fibonacci.makeflow` is the makeflow file that contains the make rules.  `fibonacci.bash` is the job 
+script which generates the Fibonacci sequence for a given integer . For example, 
 
      $ ./fibonacci.bash 6
 
@@ -91,24 +89,68 @@ last line `nothing left to do` means the workflow is completed.
 
 ## Detach Master process from the terminal
 
-The above execution of makeflow script runs as an interactive process on login node. It is a good idea to run Makeflow in the detached mode. There are several ways to detach the master process from the terminal, such as `SCREEN`, `tmux`, and `condor job as `local universe`. 
+In the above execution, the master process runs in the interactive mode. It is a good idea to run the master 
+process in the detached mode. There are several ways to detach the master process from the terminal, such as `SCREEN`, `tmux`, and condor job 
+as `local universe`. 
 
-Here we detach the master process from the terminal with condor local job via a simple script `submit_makeflow_to_local_condor.sh`. 
+Here we detach the master process from the terminal with condor local job using a 
+simple script `submit_makeflow_to_local_condor.sh`.
 
      $ submit_makeflow_to_local_condor.sh fibonacci.makeflow
+     Submitting job(s).
+     1 job(s) submitted to cluster 367027.
 
 This shell command executes the makeflow file `fibonacci.makeflow` as a local condor job. [A separate tutorial 
 contains the details of local condor job to detach the master.](https://support.opensciencegrid.org/support/solutions/articles/12000007102-makeflow-detach-master-from-the-terminal)
 
+Check the job status
+
+    $ condor_q username -w
+
+    -- Submitter: login01.osgconnect.net : <192.170.227.195:21720> : login01.osgconnect.net
+     ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD
+    19150583.0   dbala           4/1  11:54   0+00:01:54 R  0   0.4  makeflow -T condor fibonacci.makeflow
+    19150584.0   dbala           4/1  11:54   0+00:00:40 I  0   0.0  condor.sh fibonacci.bash 20 > fib.20.out
+    19150585.0   dbala           4/1  11:54   0+00:00:20 I  0   0.0  condor.sh fibonacci.bash 10 > fib.10.out
+
+The above output shows that the master is running and the two workers are waiting in the queue. The master process 
+is a local condor job so it starts quickly. The two worker jobs are distributed on OSG machines and they are 
+waiting for resources. All jobs would complete in few minutes.
 
 ## What next?
 
-This tutorial explains the basics of running Makeflow on OSG with a toy example of generating fibonacci sequence. Go 
-through the tutorial on "makeflow-detachmaster" and  learn how to detached master from the Termianl. This is useful to 
+This tutorial explains the basics of Makeflow on OSG with a toy example of generating fibonacci sequence. Go 
+through the tutorial on "makeflow-detachmaster" and  learn the details of how to detached master from the 
+Terminal. This is useful to 
 run long running jobs on OSG. Also check 
 the examples on makeflow-R and makeflow-GROMACS that show how to run real applications on OSG with Makeflow.
 
 ## Getting Help
 For technical questions about Makeflow,  contact [Cooperative Computing Lab (cclab)](http://ccl.cse.nd.edu/software/help/).
 For general assistance or questions related to running the jobs on OSG, please email the OSG User Support team  at [user-support@opensciencegrid.org](mailto:user-support@opensciencegrid.org) or visit the [help desk and community forums](http://support.opensciencegrid.org).
-                                      
+                                     
+
+## Additional details on condor local job
+
+The execution of the submit script, 
+
+     $ submit_makeflow_to_local_condor.sh fibonacci.makeflow 
+
+creates the file `submit_makeflow_to_local_condor.sh`. This is the  description file for HTCondor job. Let us 
+take a look at the file `local_condor_makeflow.submit`
+
+    $ cat local_condor_makeflow.submit
+    universe = local
+    getenv = true
+    executable = /usr/bin/makeflow
+    arguments = -T condor fibonacci.makeflow
+    log = local_condor.log
+    queue
+
+
+This is the HTcondor job description file.  The first line says that the job universe is local and the job would
+run on the submit node. The executable for the job is `/usr/bin/makeflow` with an argument `-T condor fibonacci.makeflow`. The keyword `queue` is the start button
+that submits the above three lines to the HTCondor batch system.
+
+
+
