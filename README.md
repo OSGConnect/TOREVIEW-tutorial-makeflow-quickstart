@@ -24,7 +24,7 @@ consider a simple example of generating Fibonacci sequence to demonstrate the us
 
 It is convenient to start with the `tutorial` command. In the command prompt, type
 
-	 $ tutorial makeflow-quickstart # Copies input and script files to the directory tutorial-makeflow-quickstart
+     $ tutorial makeflow-quickstart # Copies input and script files to the directory tutorial-makeflow-quickstart
  
 This will create a directory `tutorial-makeflow-quickstart`. Inside the directory, you will see the following files
 
@@ -50,7 +50,6 @@ Let us take a look at the Makeflow script,
 
      $ cat fibonacci.makeflow
 
-
      # Rule 1  Outputfile = fib.10.out, Inputfile = fibonacci.bash
      fib.10.out: fibonacci.bash
         fibonacci.bash 10 > fib.10.out
@@ -63,14 +62,12 @@ Let us take a look at the Makeflow script,
      fib.out: fib.10.out fib.20.out
         LOCAL paste fib.10.out fib.20.out > fib.out
 
-
 In the above description, there are three Make rules.  Rules 1 and 2  execute `fibonnaci.bash` with input arguments 10 and 20, respectively. These two rules produce the output files fib.10.out and fib.20.out.  
 
 Rules 1 and 2 don't have any dependency between them, so they would run concurrently. Rule 3 waits for the outputs 
 from Rules 1 and 2. Therefore, Rule 3 is the child while Rules 1 and 2 are parents. 
 
 Rule 3 is local. This means Rule 1 and 2 would run on remote machines while Rule 3 is executed on local machine. 
-
 
 ## Executing Makeflow script 
 
@@ -100,13 +97,12 @@ simple script `submit_makeflow_to_local_condor.sh`.
      Submitting job(s).
      1 job(s) submitted to cluster 367027.
 
-This shell command executes the makeflow file `fibonacci.makeflow` as a local condor job. [A separate tutorial 
-contains the details of local condor job to detach the master.](https://support.opensciencegrid.org/support/solutions/articles/12000007102-makeflow-detach-master-from-the-terminal)
+This shell command executes the makeflow file `fibonacci.makeflow` as a local condor job. Further details on 
+condor local jobs are given in the section `Additional details on condor local job` at the end of this tutorial. 
 
 Check the job status
 
     $ condor_q username -w
-
     -- Submitter: login01.osgconnect.net : <192.170.227.195:21720> : login01.osgconnect.net
      ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD
     19150583.0   dbala           4/1  11:54   0+00:01:54 R  0   0.4  makeflow -T condor fibonacci.makeflow
