@@ -84,11 +84,11 @@ To run fibonacci.makeflow on OSG Connect, type
 The argument `-T condor` submits jobs to the condor batch system. The 
 last line `nothing left to do` means the workflow is completed. 
 
-## Detach Master process from the terminal
+## Executing Makeflow script as a local condor job. 
 
-In the above execution, the master process runs in the interactive mode. It is a good idea to run the master 
-process in the detached mode. There are several ways to detach the master process from the terminal, such as `SCREEN`, `tmux`, and condor job 
-as `local universe`. 
+Now we want to run the Makeflow script on OSG Connect which intiates a master process that takes control of 
+handling the jobs.  It is a good idea to run the master process in the detached mode rather than in an 
+interactive mode. There are several ways to detach the master process from the terminal, such as `SCREEN`, `tmux`, and condor job as `local universe`. 
 
 Here we detach the master process from the terminal with condor local job using a 
 simple script `submit_makeflow_to_local_condor.sh`.
@@ -102,7 +102,7 @@ condor local jobs are given in the section `Additional details on condor local j
 
 Check the job status
 
-    $ condor_q username -w
+    $ condor_q username -wide
     -- Submitter: login01.osgconnect.net : <192.170.227.195:21720> : login01.osgconnect.net
      ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD
     19150583.0   dbala           4/1  11:54   0+00:01:54 R  0   0.4  makeflow -T condor fibonacci.makeflow
@@ -126,14 +126,40 @@ For technical questions about Makeflow,  contact [Cooperative Computing Lab (ccl
 For general assistance or questions related to running the jobs on OSG, please email the OSG User Support team  at [user-support@opensciencegrid.org](mailto:user-support@opensciencegrid.org) or visit the [help desk and community forums](http://support.opensciencegrid.org).
                                      
 
-## Additional details on condor local job
+## Additional details on Makeflow execution: Interactive mode and detached mode  
 
-The execution of the submit script, 
+We may run the Makeflow script on OSG Connect in the interactive mode or in the detached mode. Interactive mode is
+is okay to run a test workflow that consumes less than an hour. It is good practice to run the workflow in the 
+detached mode. 
+
+### Interactive mode 
+
+To run fibonacci.makeflow on OSG Connect in the interactive mode, type
+
+     $ makeflow -T condor fibonacci.makeflow
+         Total rules: 3
+     Starting execution of workflow: fibonacci.makeflow.
+     fibonacci.bash 20 > fib.20.out
+     fibonacci.bash 10 > fib.10.out
+     paste fib.10.out fib.20.out > fib.out
+     nothing left to do.
+
+The argument `-T condor` submits jobs to the condor batch system. The
+last line `nothing left to do` means the workflow is completed.
+
+### Detached mode
+
+To run fibonacci.makeflow on OSG Connect in the detached mode, the condor local job is highly recommended. The other
+options are  `SCREEN`,  `nohup`, and `tmux`. Here, we provide details of local condor job.
+
+We used the a submit script, to run fibonacci.makeflow on OSG Connect as a local condor job
 
      $ submit_makeflow_to_local_condor.sh fibonacci.makeflow 
 
-creates the file `submit_makeflow_to_local_condor.sh`. This is the  description file for HTCondor job. Let us 
-take a look at the file `local_condor_makeflow.submit`
+The script creates a file `local_condor_makeflow.submit` and submits the job with the command 
+`condor_submit local_condor_makeflow.submit`. 
+
+Let us take a look at the file `local_condor_makeflow.submit`
 
     $ cat local_condor_makeflow.submit
     universe = local
@@ -142,7 +168,6 @@ take a look at the file `local_condor_makeflow.submit`
     arguments = -T condor fibonacci.makeflow
     log = local_condor.log
     queue
-
 
 This is the HTcondor job description file.  The first line says that the job universe is local and the job would
 run on the submit node. The executable for the job is `/usr/bin/makeflow` with an argument `-T condor fibonacci.makeflow`. The keyword `queue` is the start button
