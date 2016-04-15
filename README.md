@@ -69,28 +69,14 @@ from Rules 1 and 2. Therefore, Rule 3 is the child while Rules 1 and 2 are paren
 
 Rule 3 is local. This means Rule 1 and 2 would run on remote machines while Rule 3 is executed on local machine. 
 
-## Executing Makeflow script 
-
-To run fibonacci.makeflow on OSG Connect, type 
-
-     $ makeflow -T condor fibonacci.makeflow 
-         Total rules: 3
-     Starting execution of workflow: fibonacci.makeflow.
-     fibonacci.bash 20 > fib.20.out
-     fibonacci.bash 10 > fib.10.out
-     paste fib.10.out fib.20.out > fib.out
-     nothing left to do.
-
-The argument `-T condor` submits jobs to the condor batch system. The 
-last line `nothing left to do` means the workflow is completed. 
-
 ## Executing Makeflow script as a local condor job. 
 
 Now we want to run the Makeflow script on OSG Connect which intiates a master process that takes control of 
-handling the jobs.  It is a good idea to run the master process in the detached mode rather than in an 
-interactive mode. There are several ways to detach the master process from the terminal, such as `SCREEN`, `tmux`, and condor job as `local universe`. 
+handling the jobs.  It is a practice to run the master process in the detached mode rather than in an 
+interactive mode. There are several ways to detach the master process from the 
+terminal, such as `SCREEN`, `tmux`, and condor job as `local universe`. 
 
-Here we detach the master process from the terminal with condor local job using a 
+Here we detach the master process from the terminal with condor local job. For this purpose, we utilize a 
 simple script `submit_makeflow_to_local_condor.sh`.
 
      $ submit_makeflow_to_local_condor.sh fibonacci.makeflow
@@ -98,7 +84,7 @@ simple script `submit_makeflow_to_local_condor.sh`.
      1 job(s) submitted to cluster 367027.
 
 This shell command executes the makeflow file `fibonacci.makeflow` as a local condor job. Further details on 
-condor local jobs are given in the section `Additional details on condor local job` at the end of this tutorial. 
+condor local jobs are given in the section `Additional details on Makeflow execution: Interactive mode and detached mode` at the end of this tutorial. 
 
 Check the job status
 
