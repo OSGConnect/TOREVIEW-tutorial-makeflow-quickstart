@@ -4,7 +4,7 @@
  
 ## Overview
 
-[Makeflow](http://ccl.cse.nd.edu/software/makeflow/) is a workflow engine that handles large number 
+[Makeflow](http://ccl.cse.nd.edu/software/makeflow/) is a workflow engine that handles a large number 
 of jobs. The following are characteristics of Makeflow.
 
 *    `Master/Workers paradigm`  Workers complete the tasks and transfer the data back to the master. Master 
@@ -18,7 +18,7 @@ monitors and controls the workers.
 In this tutorial, we learn (1) how to use Makeflow and (2) how to detach the master process 
 from the terminal so that 
 the master is alive and waits for the workers to complete, even after we log out from the submit node. We 
-consider a simple example of generating Fibonacci sequence to demonstrate the usage of Makeflow. 
+consider a simple example of generating the Fibonacci sequence to demonstrate the usage of Makeflow. 
 
 ## Tutorial files
 
