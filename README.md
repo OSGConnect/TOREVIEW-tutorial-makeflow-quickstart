@@ -11,7 +11,7 @@ of jobs. The following are characteristics of Makeflow.
 monitors and controls the workers.
 *    `Parallel job execution` Jobs are executed in parallel as much as possible.
 *    `Fault tolerant` In case of failure, the execution of jobs are  continued from where it stopped. 
-*    `UNIX tool Make` The syntax of Makeflow is similar to UNIX tool Make that allows one to easily describe the job dependencies.  
+*    `UNIX tool Make` The syntax of Makeflow is similar to UNIX tool Make which is convenient to describe the job dependencies.  
 
 <img src="https://raw.githubusercontent.com/OSGConnect/tutorial-makeflow-quickstart/master/Figs/MWFig.png" width="450px" height="350px" />
 
