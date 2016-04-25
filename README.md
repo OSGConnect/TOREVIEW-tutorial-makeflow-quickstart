@@ -7,8 +7,8 @@
 [Makeflow](http://ccl.cse.nd.edu/software/makeflow/) is a workflow engine that handles a large number 
 of jobs. The following are characteristics of Makeflow.
 
-*    `Master/Workers paradigm`  Workers complete the tasks and then transfer output data back to the master. Master 
-monitors and controls the workers.
+*    `Master/Workers paradigm`  The master monitors and controls the workers while the workers complete the tasks. 
+master monitors and controls the workers.
 *    `Parallel job execution` Jobs are executed in parallel as much as possible.
 *    `Fault tolerant` In case of failure, the jobs are continued from where they are stopped. 
 *    `UNIX tool Make` The syntax of Makeflow is similar to the popular UNIX tool Make. The Make rules are 
