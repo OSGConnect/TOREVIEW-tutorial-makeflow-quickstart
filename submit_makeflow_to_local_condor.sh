@@ -14,7 +14,7 @@ fi
 echo "universe    =  local" > local_condor_makeflowjob.submit
 echo "getenv      =  true" >> local_condor_makeflowjob.submit
 echo "executable  =  /usr/bin/makeflow " >> local_condor_makeflowjob.submit
-echo "arguments   =  -T condor fibonacci.makeflow" >> local_condor_makeflowjob.submit
+echo "arguments   =  -T condor $FILE" >> local_condor_makeflowjob.submit
 echo "log         =  local_condor.log" >> local_condor_makeflowjob.submit
 echo "queue" >> local_condor_makeflowjob.submit
 
