@@ -40,7 +40,7 @@ would print Fibonacci sequence 1, 2, 3, 5, and 8.
 
 ## Makeflow script and parent child relationship
 
-The figure shows the graphical representation of `fibonacci.makeflow`.  It describes two independent 'jobs (Rules 1&2) followed by a dependent job (Rule 3). The syntax of the Makeflow file is based on the Make rules.   
+The figure shows the graphical representation of `fibonacci.makeflow`.  It describes two independent jobs (Rules 1&2) followed by a dependent job (Rule 3). The syntax of the Makeflow file is based on Make rules.   
 
 <img src="https://raw.githubusercontent.com/OSGConnect/tutorial-makeflow-quickstart/master/Figs/FibFig.png" width="400px" height="300px" />
 
@@ -61,16 +61,15 @@ Let us take a look at the Makeflow script,
         LOCAL paste fib.10.out fib.20.out > fib.out
 
 In the above description, there are three Make rules.  Rules 1 and 2  execute `fibonnaci.bash` with input arguments 10 and 20, respectively. These two rules produce the output files fib.10.out and fib.20.out.  Rules 1 and 2 are 
-independent, so they would run concurrently.  The job defined in Rule 3 waits for the completion of the 
-other two jobs. 
+independent, so they would run concurrently. Rule 3 waits for completion of Rules 1&2. 
 
 ## Executing Makeflow script as a local condor job. 
 
-Now we want to run the Makeflow script. It is a good practice to run the master process in the detached mode 
-rather than in an interactive mode. There are several ways to detach the master process from the 
-terminal, such as `SCREEN`, `tmux`, and condor job as `local universe`. 
+We may execute Makeflow either as an interactive process or a detached process. It is a good practice to 
+run the master process in the detached mode rather than in an interactive mode. There are several ways 
+to detach the master process from the terminal, such as `SCREEN`, `tmux`, and condor job as `local universe`. 
 
-Here we run the master process as a local job in condor universe with the 
+Here we run the master process as a local job in condor universe with the shell   
 script `submit_makeflow_to_local_condor.sh`.
 
      $ submit_makeflow_to_local_condor.sh fibonacci.makeflow
@@ -89,15 +88,15 @@ Check the job status
     19150584.0   dbala           4/1  11:54   0+00:00:40 I  0   0.0  condor.sh fibonacci.bash 20 > fib.20.out
     19150585.0   dbala           4/1  11:54   0+00:00:20 I  0   0.0  condor.sh fibonacci.bash 10 > fib.10.out
 
-The above output shows that the master is running and the two workers are waiting in the queue. The master process 
-is a local condor job so it starts quickly. The two worker jobs are distributed on OSG machines and they are 
+The above output shows that the master is running and two workers are waiting in queue. The master process 
+is a local condor job so it starts quickly. The worker jobs are distributed on OSG machines and they are 
 waiting for resources. All jobs would complete in few minutes.
 
-## What next?
+## What's next?
 
-This tutorial explains the basics of Makeflow on the OSG with a toy example of generating fibonacci sequence. 
-Also check the examples on makeflow-R and makeflow-GROMACS that show how to run real applications on the OSG 
-with Makeflow.
+This tutorial explains the basics of Makeflow on the OSG with a toy example of generating 
+fibonacci sequence. Next, check the examples on makeflow-R and makeflow-GROMACS that show how 
+to run real applications on the OSG with Makeflow.
 
 ## Getting Help
 For technical questions about Makeflow,  contact [Cooperative Computing Lab (cclab)](http://ccl.cse.nd.edu/software/help/).
@@ -107,12 +106,12 @@ For general assistance or questions related to running the jobs on OSG, please e
 ## Additional details on Makeflow execution: Interactive mode and detached mode  
 
 Makeflow runs in the interactive or detached mode. Interactive mode is
-is okay if the workflow finishes in few minutes. Often this is not the case. Therefore, it is a good practice 
-to run the workflow in the detached mode. 
+is okay if the workflow finishes in few minutes. Often this is not the case. Therefore, it is a good 
+practice to run the workflow in the detached mode. 
 
 ### Interactive mode 
 
-To run fibonacci.makeflow in the interactive mode, type
+To run fibonacci.makeflow in the interactive mode (takes only few minutes to complete), type
 
      $ makeflow -T condor fibonacci.makeflow
          Total rules: 3
@@ -129,7 +128,7 @@ last line `nothing left to do` means the workflow is completed.
 
 To run fibonacci.makeflow in the detached mode on the OSG Connect, the condor local job is 
 highly recommended. The other options are  `SCREEN`,  `nohup`, and `tmux`. Here, we provide details 
-of local condor job.
+of the local condor job.
 
 To run fibonacci.makeflow as a local condor job,
 
@@ -148,7 +147,7 @@ Let us take a look at the file `local_condor_makeflow.submit`
     log = local_condor.log
     queue
 
-This is job description file for HTCondor job schedular. The first line says that the job universe is local, so the 
+This is a job description file for HTCondor job schedular. The first line says that the job universe is local, so the 
 job would run on the login node itself. The executable for the job is `/usr/bin/makeflow` with an argument `-T condor fibonacci.makeflow`. The keyword `queue` is the start button that submits the above three lines to the 
 HTCondor batch system.
 
