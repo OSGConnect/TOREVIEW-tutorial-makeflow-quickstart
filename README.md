@@ -100,7 +100,7 @@ to run real applications on the OSG with Makeflow.
 
 ## Getting Help
 For technical questions about Makeflow,  contact [Cooperative Computing Lab (cclab)](http://ccl.cse.nd.edu/software/help/).
-For general assistance or questions related to running the jobs on OSG, please email the OSG User Support team  at [user-support@opensciencegrid.org](mailto:user-support@opensciencegrid.org) or visit the [help desk and community forums](http://support.opensciencegrid.org).
+For general assistance or questions related to running the jobs on OSG, please email the OSG User Support team  at [support@opensciencegrid.org](mailto:support@opensciencegrid.org) or visit the [help desk and community forums](http://support.opensciencegrid.org).
                                      
 
 ## Additional details on Makeflow execution: Interactive mode and detached mode  
